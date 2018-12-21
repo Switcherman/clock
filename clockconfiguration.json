@@ -1,2 +1,4 @@
-[{"cron": "0 33 13 18 12 * ", "name": "clock1", "sound": "/Users/lucifer/Music/无损音乐/宇多田光 - Automatic.ape", "enabled": true, "start": "30", "last": "20"},
-  {"cron": "0 57 12 18 12 *", "name": "clock1", "sound": "default", "enabled": true, "start": "0", "last": "30"}]
+[
+  {"cron": "0 57 12 18 12 *", "name": "clock1", "sound": "default", "enabled": false, "start": "0", "last": "30"},
+  {"cron": "0 15 18 * * 1-5 ", "name": "clock1", "sound": "/Users/lucifer/Music/无损音乐/宇多田光 - Automatic.ape", "enabled": true, "start": "30", "last": "20"}
+]
