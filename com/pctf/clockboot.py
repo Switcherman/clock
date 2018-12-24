@@ -3,11 +3,23 @@ import json
 import sys
 import time
 import os
+import logging
+import logging.handlers
+
 
 root_path = os.path.abspath(os.path.join(os.getcwd(), "../../"))
 sys.path.append(root_path)
 default_sound = os.path.join(root_path, "default.mp3")
 config_file = os.path.join(root_path, "clockconfiguration.json")
+log_file = os.path.join(root_path, "clock.log")
+
+log_handler = logging.handlers.RotatingFileHandler(log_file)
+fmt = '%(asctime)s - %(filename)s:%(lineno)s - %(name)s - %(message)s'
+formatter = logging.Formatter(fmt)
+log_handler.setFormatter(formatter)
+logger = logging.getLogger('main')
+logger.addHandler(log_handler)
+logger.setLevel(logging.INFO)
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from com.pctf.entity.clock import dict_to_clock
@@ -20,10 +32,12 @@ from com.pctf.event.clock_event import ring
 
 def boot():
     args = sys.argv
-    print(args)
+    logger.info('clock boot...')
+    logger.info(args)
     clocks = load_config(config_file)
     jobs, scheduler = init_scheduler(clocks)
     scheduler.start()
+    logger.info('scheduler start...')
     while True:
         time.sleep(100)
 
